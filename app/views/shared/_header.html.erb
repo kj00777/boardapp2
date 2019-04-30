@@ -50,6 +50,7 @@
               <% end %>
               
               <div class="dropdown-menu dropdown-menu-right">
+                <%= current_user.decorate.full_name %>
                 <%= link_to "プロフィール編集","", class: "dropdown-item" %>
                 
               </div>
