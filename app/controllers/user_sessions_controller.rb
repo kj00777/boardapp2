@@ -11,9 +11,11 @@ class UserSessionsController < GeneralController
         @user = login(params[:email], params[:password])
         
         if @user = login(params[:email], params[:password])
+            flash[:danger]= t 'user_sessions.flash.success'
             redirect_back_or_to(root_path, notice: 'Login successful')
           else
-            flash.now[:alert] = 'Login failed'
+            flash[:danger]= t 'user_sessions.flash.danger'
+            
             render action: 'new'
           end
     end

@@ -8,9 +8,13 @@ class UsersController < GeneralController
     def create
         @user = User.new(user_params)
         if @user.save
+            flash[:success] = t 'users.flash.success'
             redirect_to root_path
+            
         else
+            flash[:danger]= t 'users.flash.danger'
             render :new
+            
         end
     end
 

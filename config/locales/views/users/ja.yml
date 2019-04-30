@@ -17,6 +17,12 @@ ja:
       login: 'ログイン'
       forget_password: 'パスワードをお忘れの方はこちら'
       login_link: 'ログインはこちら'
+    flash:
+      success: "保存が成功しました"
+      danger: "ユーザー登録失敗"
   user_sessions:
     new:
       registration_link: '新規登録はこちら'
+    flash:
+      success: "ログイン成功"
+      danger: "ログイン失敗"
