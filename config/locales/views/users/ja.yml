@@ -1,0 +1,22 @@
+ja:
+  users:
+    index:
+      title: 'ユーザ一覧'
+    show:
+      title: '%{user_name}さんのユーザ情報' # 引数の指定もできる。
+    edit:
+      title: '%{user_name}さんのユーザ情報を編集'
+    new:
+      form_registration: '登録'
+      first_name: '姓'
+      last_name: '名'
+      mail: 'メールアドレス'
+      image_file: 'プロフィール画像'
+      password: 'パスワード'
+      password_confirmation: 'パスワード（確認）'
+      login: 'ログイン'
+      forget_password: 'パスワードをお忘れの方はこちら'
+      login_link: 'ログインはこちら'
+  user_sessions:
+    new:
+      registration_link: '新規登録はこちら'
