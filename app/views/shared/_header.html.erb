@@ -26,8 +26,8 @@
 
               <div class="dropdown-menu dropdown-menu-right">
 
-                <%= link_to "掲示板一覧","", class: "dropdown-item" %>
-                <%= link_to "掲示板作成","", class: "dropdown-item" %>
+                <%= link_to "掲示板一覧",boards_path, class: "dropdown-item" %>
+                <%= link_to "掲示板作成",new_board_path, class: "dropdown-item" %>
               </div>
             </li>
 
@@ -46,11 +46,15 @@
           <ul class="navbar-nav ml-auto mt-10">
             <li class="nav-item dropdown dropdown-slide">
               <%= link_to "" do %>
-                <%= image_tag "sample.jpg", width: "40px", height: "40px", class: "rounded-circle mr15"  %>
+                <% if current_user.image %>
+                  <%= image_tag current_user.image, width: "40px", height: "40px", class: "rounded-circle mr15"  %>
+                <% else %>
+                  <%= image_tag "sample.jpg", width: "40px", height: "40px", class: "rounded-circle mr15"  %>
+                <% end %>
               <% end %>
               
               <div class="dropdown-menu dropdown-menu-right">
-                <%= current_user.decorate.full_name %>
+                <%= current_user.decorate.full_name if current_user %>
                 <%= link_to "プロフィール編集","", class: "dropdown-item" %>
                 
               </div>

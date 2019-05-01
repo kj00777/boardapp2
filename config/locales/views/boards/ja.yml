@@ -1,0 +1,5 @@
+ja:
+  boards:
+    flash:
+      success: "掲示板が保存されました"
+      danger: "掲示板が保存されませんでした"

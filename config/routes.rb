@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :user_sessions
+  resources :boards
   get "/login" => "user_sessions#new"
   post '/login' => 'user_sessions#create'
   post '/logout' => 'user_sessions#destroy', :as => :logout
