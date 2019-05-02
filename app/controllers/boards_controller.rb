@@ -23,6 +23,12 @@ class BoardsController < ApplicationController
 
     end
 
+    def show
+        @board = Board.find_by(id: params[:id])
+        @comments = @board.comments.page(params[:page]).per(2).order('created_at DESC')
+        @comment = Comment.new
+    end
+
     def destroy
 
     end
@@ -35,4 +41,6 @@ class BoardsController < ApplicationController
     def board_params
         params.require(:board).permit(:title, :content, :image)
     end
+
+
 end

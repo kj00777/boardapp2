@@ -1,0 +1,51 @@
+<div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+  <!-- 掲示板内容 -->
+  <article class="single-post">
+    <div class='row'>
+      <div class='col-md-3'>
+      <% if @board.image.present? %>
+            <%= image_tag @board.image %>
+        <% else %>
+            <%= image_tag "sample.jpg" %>
+        <% end %>
+      </div>
+      <div class='col-md-9'>
+        <h3 style='display: inline;'>掲示板タイトル</h3>
+        <div>
+          <div class="product-ratings" style='display: inline; float: right;'>
+            <a href='#' class='selected'><i class='fas fa-star'></i></a>
+          </div>
+        </div>
+        <div class='edit_board_btn mr10' style='display: inline; float: right;'>
+          <a href='#'><i class='fas fa-trash mr10'></i></a>
+          <a href='#'><i class='fas fa-pencil-alt'></i></a>
+        </div>
+        <ul class="list-inline">
+          <li class="list-inline-item">by <a href='#'>作者名</a></li>
+          <li class="list-inline-item">15th January</li>
+        </ul>
+      </div>
+    </div>
+    <p>掲示板説明文</p>
+  </article>
+  <!-- コメントフォーム -->
+  <div class="block comment">
+    <h4>投稿する</h4>
+    <%= render "comment_form", board: @board, comment: @comment %> 
+  </div>
+
+  <!-- コメントエリア -->
+  <div id='comment_area'>
+  <% @board.comments.each do |comment| %>
+    <%= render "comment", comment: comment %>
+  <% end %>
+  </div>
+
+  <!-- ページネーション -->
+  <div class='mb15'>
+    <nav>
+      <%= paginate @comments %>
+    </nav>
+  </div>
+</div>
+

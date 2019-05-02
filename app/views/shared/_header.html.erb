@@ -46,10 +46,12 @@
           <ul class="navbar-nav ml-auto mt-10">
             <li class="nav-item dropdown dropdown-slide">
               <%= link_to "" do %>
+                <% if current_user %>
                 <% if current_user.image %>
                   <%= image_tag current_user.image, width: "40px", height: "40px", class: "rounded-circle mr15"  %>
                 <% else %>
                   <%= image_tag "sample.jpg", width: "40px", height: "40px", class: "rounded-circle mr15"  %>
+                <% end %>
                 <% end %>
               <% end %>
               

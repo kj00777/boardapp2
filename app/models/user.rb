@@ -5,6 +5,7 @@ class User < ApplicationRecord
   mount_uploader :image, UserImageUploader
 
   has_many :boards, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
