@@ -1,0 +1,49 @@
+<div class="widget personal-info">
+  <h3 class="widget-header user">掲示板作成</h3>
+  
+  <%= form_for @board do |form| %>
+    <div class="form-group">
+      
+      <%= form.label :title, "タイトル", class: "control-label required" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :content, "説明文", class: "control-label required" %>
+      <%= form.text_area :content, class: "form-control", style: "height: 200px;" %>
+      
+    </div>
+    <div class="form-group choose-file">
+      <%= form.file_field :image, class: "form-control-file d-inline mt10", id: :board_img %>
+      <%= form.hidden_field :image_cache,  class: "form-control-file d-inline mt10",id: :board_img %>
+      <script type="text/javascript">
+        $(function() {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img_prev').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#board_img").change(function(){
+            readURL(this);
+        });
+        });
+      </script>
+      
+      <div class='mt15'>
+      <% if @board.image? %>
+        <%= image_tag @board.image, class: "img-responsive", id: :img_prev, style: "width:300px;height:200px;" %> 
+      <% else %> 
+        <%= image_tag "sample.jpg", class: "img-responsive", id: :img_prev, style: "width:300px;height:200px;" %>
+      <% end %>
+      </div>
+    </div>
+    <%= form.submit :送信, class: "btn btn-transparent" %>
+    
+
+  <% end %>
+</div>
+
+

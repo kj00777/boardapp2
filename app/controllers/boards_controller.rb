@@ -1,5 +1,7 @@
 class BoardsController < ApplicationController
 
+    before_action :board_user, only: [:edit, :destroy]
+
     def index
         @boards = Board.all
 
@@ -30,16 +32,39 @@ class BoardsController < ApplicationController
     end
 
     def destroy
+        @board = Board.find_by(id: params[:id])
+        @board.destroy
+        flash[:danger] = t 'boards.flash.delete' ,title: @board.title
+        redirect_to boards_path
 
     end
 
     def edit
+        @board = Board.find_by(id: params[:id])
 
+    end
+
+    def update
+        @board = Board.find_by(id: params[:id])
+        if @board.update(board_params)
+            flash[:success] = t 'boards.flash.update'
+           redirect_to boards_path 
+        else
+            render :edit
+        end
     end
 
     private
     def board_params
         params.require(:board).permit(:title, :content, :image)
+    end
+
+    def board_user
+        board = Board.find_by(id: params[:id])
+        if board.user_id != current_user.id
+            flash[:danger] = t 'boards.flash.board_user'
+            redirect_to boards_path
+        end
     end
 
 

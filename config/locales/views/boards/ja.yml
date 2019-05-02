@@ -3,3 +3,6 @@ ja:
     flash:
       success: "掲示板が保存されました"
       danger: "掲示板が保存されませんでした"
+      board_user: "不正なアクセスです"
+      delete: "%{title}を削除しました"
+      update: "掲示板が更新されました"

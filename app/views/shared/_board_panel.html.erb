@@ -22,8 +22,14 @@
             </div>
           </div>
           <div class='edit_board_btn mr10' style='display: inline; float: right;'>
-            <a href='#'><i class='fas fa-trash-alt mr10' aria-hidden='true'></i></a>
-            <a href='#'><i class='fas fa-pencil-alt'></i></a>
+          <% if board.user_id == current_user.id %>
+            <%= link_to board_path(board.id), method: :delete, data: {confirm: "削除しますか？"} do %>
+              <i class='fas fa-trash-alt mr10' aria-hidden='true'></i>
+            <% end %>
+            <%= link_to edit_board_path(board.id) do %>
+              <i class='fas fa-pencil-alt'></i>
+            <% end %>
+          <% end %>
           </div>
           <ul class="list-inline product-meta">
             <li class="list-inline-item">
