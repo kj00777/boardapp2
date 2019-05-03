@@ -17,9 +17,11 @@
             <%= link_to board.title, board_path(board.id) %>
           </h4>
           <div>
+          <% if board.user_id != current_user.id %>
             <div class="product-ratings" style='display: inline; float: right;'>
-              <a href='#' class='selected' style='font-size: 16px;'><i class='fa fa-star'></i></a>
+              <%= render "follow", board: board %>
             </div>
+          <% end %>
           </div>
           <div class='edit_board_btn mr10' style='display: inline; float: right;'>
           <% if board.user_id == current_user.id %>

@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :user_sessions
   resources :boards do
     resources :comments, only: [:create, :edit, :destroy]
+    resources :follows, only: [:create, :destroy]
   end
+  
   get "/login" => "user_sessions#new"
   post '/login' => 'user_sessions#create'
   post '/logout' => 'user_sessions#destroy', :as => :logout

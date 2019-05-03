@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :boards, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :follows, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
