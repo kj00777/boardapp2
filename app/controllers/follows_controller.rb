@@ -18,4 +18,9 @@ class FollowsController < ApplicationController
             redirect_back(fallback_location: root_path)
         end
     end
+
+    def index
+        user = current_user
+        @boards = Board.followed_boards(user).page(params[:page]).per(10).order('created_at DESC')
+    end
 end

@@ -9,5 +9,9 @@ class Board < ApplicationRecord
     def follow_user(user_id)
         follows.find_by(user_id: user_id)
     end
+
+    scope :followed_boards, -> user {
+        joins(:follows).where('follows.user_id = ?', user.id)
+    }
     
 end

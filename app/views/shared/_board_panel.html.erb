@@ -19,7 +19,7 @@
           <div>
           <% if board.user_id != current_user.id %>
             <div class="product-ratings" style='display: inline; float: right;'>
-              <%= render "follow", board: board %>
+              <%= render "boards/follow", board: board %>
             </div>
           <% end %>
           </div>

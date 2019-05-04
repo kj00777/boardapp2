@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :edit, :destroy]
     resources :follows, only: [:create, :destroy]
   end
+
+  get "/follows" => "follows#index"
   
   get "/login" => "user_sessions#new"
   post '/login' => 'user_sessions#create'
