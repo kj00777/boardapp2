@@ -1,9 +1,9 @@
 <% if board.follow_user(current_user.id) %>
-    <%= link_to board_follow_path(board_id: board.id, id: board.follow_user(current_user.id).id), class: "selected", method: :delete do %>
+    <%= link_to board_follow_path(board_id: board.id, id: board.follow_user(current_user.id).id), class: "selected", method: :delete, remote: true do %>
         <i class='fas fa-star'></i>
     <% end %>
 <% else %>
-    <%= link_to board_follows_path(board.id), class: "selected", method: :post do %>
+    <%= link_to board_follows_path(board.id), class: "selected", method: :post, remote: true do %>
         <i class='far fa-star'></i>
     <% end %>
 <% end %>

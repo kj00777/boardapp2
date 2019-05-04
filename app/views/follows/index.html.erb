@@ -1,6 +1,8 @@
 <div class="row mt15" id='followed_board'>
     <% @boards.each do |board| %>
+        
         <%= render "shared/board_panel", board: board %>
+        
   <% end %>
 </div>
 

@@ -18,7 +18,7 @@
           </h4>
           <div>
           <% if board.user_id != current_user.id %>
-            <div class="product-ratings" style='display: inline; float: right;'>
+            <div class="product-ratings" id="follow_<%= board.id %>" style='display: inline; float: right;'>
               <%= render "boards/follow", board: board %>
             </div>
           <% end %>
