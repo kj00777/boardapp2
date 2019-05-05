@@ -1,0 +1,1 @@
+$('#comment_<%= @comment.id %>').html("<%= escape_javascript(render 'boards/comment_form', board: @board, comment: @comment) %>");

@@ -27,7 +27,7 @@ class BoardsController < ApplicationController
 
     def show
         @board = Board.find_by(id: params[:id])
-        @comments = @board.comments.page(params[:page]).per(10).order('created_at DESC')
+        @comments = @board.comments.page(params[:page]).per(30).order('created_at DESC')
         @comment = Comment.new
     end
 

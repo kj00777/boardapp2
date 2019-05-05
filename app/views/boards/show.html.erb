@@ -39,14 +39,14 @@
   <!-- コメントフォーム -->
   <div class="block comment">
     <h4>投稿する</h4>
+    <div  id="comment_form">
     <%= render "comment_form", board: @board, comment: @comment %> 
+    </div>
   </div>
 
   <!-- コメントエリア -->
   <div id='comment_area'>
-  <% @board.comments.each do |comment| %>
-    <%= render "comment", comment: comment %>
-  <% end %>
+    <%= render "comment", comments: @comments %>
   </div>
 
   <!-- ページネーション -->

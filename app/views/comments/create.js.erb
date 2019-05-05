@@ -1,0 +1,2 @@
+$('#comment_area').html("<%= escape_javascript(render 'boards/comment', comments: @comments) %>");
+$('#comment_form').html("<%= escape_javascript(render 'boards/comment_form', board: @board, comment: @comment) %>");
