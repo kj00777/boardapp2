@@ -3,7 +3,9 @@ class BoardsController < ApplicationController
     before_action :board_user, only: [:edit, :destroy]
 
     def index
-        @boards = Board.all
+        
+        @q = Board.ransack(params[:q])
+        @boards = @q.result(distinct: true).page(params[:page]).per(20).order('created_at DESC')
 
     end
 

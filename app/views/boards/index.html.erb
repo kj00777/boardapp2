@@ -3,8 +3,11 @@
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="block d-flex">
-          <input type='text' name='title_or_description_cont' class='form-control mb-2 mr-sm2 mb-sm0 mr5' placeholder='検索ワード'>
-          <input type='submit' name='commit' value='検索' class='btn btn-main'>
+        <%= search_form_for @q do |f| %>
+          <%= f.search_field :title_or_content_cont, class: "form-control mb-2 mr-sm2 mb-sm0 mr5", placeholder: "検索ワード" %>
+          <%= f.submit value: "検索", class: "btn btn-main"  %>
+          
+        <% end %>
         </div>
       </div>
     </div>
