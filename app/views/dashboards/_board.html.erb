@@ -1,0 +1,20 @@
+<tr>
+<td class="product-thumb">
+    <% if n.notificable.image.present? %>
+        <%= image_tag n.notificable.image, class: 'rounded-circle', width: '50px' %>
+    <% else %>
+        <%= image_tag 'sample.jpg', class: 'rounded-circle', width: '50px' %>
+    <% end %>
+</td>
+<td class="product-details">
+  <h3 class="title", style='display: inline;'>
+    <%= link_to "新しい掲示板が作成されました",  board_path(n.notificable_id)%>
+  </h3>
+  <p style='display: inline; float:right;'>
+    2018/01/20
+  </p>
+  <div class="notification_text">
+    タイトル: <%= n.notificable.title %>
+  </div>
+</td>
+</tr>

@@ -5,11 +5,26 @@
         <div class="search-result bg-gray">
           <h2>お知らせ一覧</h2>
           <strong>表示条件</strong>
-          <select name="search">
-            <option value="A">全て表示</option>
-            <option value="B">掲示板作成情報のみ表示</option>
-            <option value="O">コメント情報のみ表示</option>
-          </select>
+          <select name="search" onchange="myfunc(this.value)">
+            <% if params[:option] == "A" || params[:option] == nil %>
+            <option value="A" selected="selected"><%= t '.all' %></option>
+            <option value="B"><%= t '.only_boards' %></option>
+            <option value="O"><%= t '.only_comments' %></option>
+            <% elsif params[:option] == "B" %>
+            <option value="A"><%= t '.all' %></option>
+            <option value="B" selected="selected"><%= t '.only_boards' %></option>
+            <option value="O"><%= t '.only_comments' %></option>
+          <% elsif params[:option] == "O" %>
+            <option value="A"><%= t '.all' %></option>
+            <option value="B"><%= t '.only_boards' %></option>
+            <option value="O" selected="selected"><%= t '.only_comments' %></option>
+          <% end %>
+          <script type="text/javascript">
+            function myfunc(value) {
+              window.location.replace('/?option=' + value);
+            }
+          </script>
+        </select>
         </div>
       </div>
     </div>
@@ -23,54 +38,17 @@
                   <div class="card-body">
                     <div class="widget dashboard-container my-adslist">
                       <table class="table product-dashboard-table">
-                        <tr>
-                          <td class="product-thumb">
-                            <%= image_tag 'sample.jpg', class: 'rounded-circle', width: '50px' %>
+                      <% @notifications.each do |n| %>
+                        <% if n.notificable_type == "Board" && n.notificable.user_id != current_user.id %>
+                          <td>
+                              <%= render "board", n: n %>
                           </td>
-                          <td class="product-details">
-                            <h3 class="title", style='display: inline;'>
-                              あなたの掲示板にコメントがつきました
-                            </h3>
-                            <p style='display: inline; float:right;'>
-                              2018/01/20
-                            </p>
-                            <div class="notification_text">
-                              コメント: コメントサンプル
-                            </div>
+                        <% elsif n.notificable_type == "Comment" && n.notificable.board.user_id == current_user.id %>
+                          <td>
+                              <%= render "comment", n: n %>
                           </td>
-                        </tr>
-                        <tr>
-                          <td class="product-thumb">
-                            <%= image_tag 'sample.jpg', class: 'rounded-circle', width: '50px' %>
-                          </td>
-                          <td class="product-details">
-                            <h3 class="title", style='display: inline;'>
-                              新しい掲示板が作成されました
-                            </h3>
-                            <p style='display: inline; float:right;'>
-                              2018/01/20
-                            </p>
-                            <div class="notification_text">
-                              タイトル: 掲示板タイトルサンプル
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="product-thumb">
-                            <%= image_tag 'sample.jpg', class: 'rounded-circle', width: '50px' %>
-                          </td>
-                          <td class="product-details">
-                            <h3 class="title", style='display: inline;'>
-                              あなたの掲示板にコメントがつきました
-                            </h3>
-                            <p style='display: inline; float:right;'>
-                              2018/01/20
-                            </p>
-                            <div class="notification_text">
-                              コメント: コメントサンプル
-                            </div>
-                          </td>
-                        </tr>
+                        <% end %>
+                      <% end %>
                       </table>
                     </div>
                   </div>

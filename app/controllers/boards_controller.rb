@@ -18,6 +18,7 @@ class BoardsController < ApplicationController
         @board = Board.new(board_params)
         @board.user_id = current_user.id
         if @board.save
+            @board.notification = Notification.create
             flash[:success] = t 'boards.flash.success'
             redirect_to boards_path
         else

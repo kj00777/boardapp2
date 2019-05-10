@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
         @comment = @board.comments.build(comment_params)
         @comment.user_id = current_user.id
         if @comment.save
+            @comment.notification = Notification.create
             @comment = Comment.new
             @comments = @board.comments.page(params[:page]).per(10).order('created_at DESC')
             #redirect_to "/boards/#{@comment.board_id}"

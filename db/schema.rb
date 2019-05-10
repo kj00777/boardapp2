@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190503093112) do
+ActiveRecord::Schema.define(version: 20190507145647) do
 
   create_table "boards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                    null: false
@@ -41,16 +41,29 @@ ActiveRecord::Schema.define(version: 20190503093112) do
     t.index ["user_id"], name: "index_follows_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",            null: false
-    t.string   "crypted_password"
-    t.string   "salt"
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "notificable_type"
+    t.integer  "notificable_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "first_name",       null: false
-    t.string   "last_name",        null: false
+    t.index ["notificable_type", "notificable_id"], name: "index_notifications_on_notificable_type_and_notificable_id", using: :btree
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email",                      null: false
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "first_name",                 null: false
+    t.string   "last_name",                  null: false
     t.string   "image"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
+    t.string   "last_login_from_ip_address"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
   end
 
 end

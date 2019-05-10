@@ -1,0 +1,21 @@
+<tr>
+<td class="product-thumb">
+  <% if n.notificable.board.image.present? %>
+    <%= image_tag n.notificable.board.image, class: 'rounded-circle', width: '50px' %>
+  <% else %>
+    <%= image_tag 'sample.jpg', class: 'rounded-circle', width: '50px' %>
+  <% end %>
+</td>
+<td class="product-details">
+  <h3 class="title", style='display: inline;'>
+  <%= link_to "あなたの掲示板にコメントがつきました",  board_path(n.notificable.board_id)%>
+    
+  </h3>
+  <p style='display: inline; float:right;'>
+    2018/01/20
+  </p>
+  <div class="notification_text">
+    コメント: <%= n.notificable.content %>
+  </div>
+</td>
+</tr>

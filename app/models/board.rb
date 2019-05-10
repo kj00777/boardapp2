@@ -3,6 +3,8 @@ class Board < ApplicationRecord
     belongs_to :user
     has_many :comments, dependent: :destroy
     has_many :follows, dependent: :destroy
+    has_one :notification, :as => :notificable
+
     validates :title, presence: true
     validates :content, presence: true
 
