@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/smartinez87/exception_notification.git
+  revision: 6a89f3b3b1623fa24d4f7b55a662c3bf2ab6b00b
+  specs:
+    exception_notification (4.3.0)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -211,6 +219,7 @@ GEM
     sassc (1.12.1)
       ffi (~> 1.9.6)
       sass (>= 3.3.0)
+    slack-notifier (2.3.2)
     sorcery (0.13.0)
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
@@ -253,6 +262,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.2)
   draper
+  exception_notification!
   font-awesome-rails
   font-awesome-sass
   jbuilder (~> 2.5)
@@ -268,6 +278,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails_config
   sass-rails (~> 5.0)
+  slack-notifier
   sorcery
   spring
   spring-watcher-listen (~> 2.0.0)
