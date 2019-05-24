@@ -16,6 +16,9 @@ class UserSessionsController < GeneralController
           else
             flash[:danger]= t 'user_sessions.flash.danger'
             
+            notifier = Slack::Notifier.new('https://hooks.slack.com/services/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')
+            notifier.ping('ログイン失敗')
+            
             render action: 'new'
           end
     end
