@@ -24,4 +24,13 @@ Rails.application.routes.draw do
   post '/logout' => 'user_sessions#destroy', :as => :logout
 
   resources :password_resets
+
+  namespace :admin do
+    get "/login" => "user_sessions#new"
+    post "/login" => "user_sessions#create"
+    post "/logout" => "user_sessions#destroy", :as => :logout
+    resources :dashboards
+  end
+
+  get "/admin/notadminuser" => "admin#notadminuser"
 end
