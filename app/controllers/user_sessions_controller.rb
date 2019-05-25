@@ -1,6 +1,8 @@
 class UserSessionsController < GeneralController
     skip_before_action :require_login, except: [:destroy], raise: false
 
+    # layout "before_login"
+
     def new
         render :layout => "before_login"
         @user = User.new

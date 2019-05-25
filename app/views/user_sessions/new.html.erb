@@ -2,6 +2,11 @@
   <div class="widget change-password">
     <h3 class="widget-header user"><%= t 'users.new.login' %></h3>
     <%= form_tag(user_sessions_path, method: :post) do %>
+      
+
+
+
+
       <div class="form-group">
           <label for='email'><%= t 'users.new.mail' %></label><br />
           <%= text_field_tag "email","", class:"form-control"  %>

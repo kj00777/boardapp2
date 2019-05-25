@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190523143309) do
+ActiveRecord::Schema.define(version: 20190525135805) do
 
   create_table "boards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                    null: false
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20190523143309) do
     t.integer  "user_id",                  null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_boards_on_deleted_at", using: :btree
     t.index ["user_id"], name: "index_boards_on_user_id", using: :btree
   end
 
@@ -28,7 +30,9 @@ ActiveRecord::Schema.define(version: 20190523143309) do
     t.integer  "board_id",                 null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.datetime "deleted_at"
     t.index ["board_id"], name: "index_comments_on_board_id", using: :btree
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
@@ -46,6 +50,8 @@ ActiveRecord::Schema.define(version: 20190523143309) do
     t.integer  "notificable_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_notifications_on_deleted_at", using: :btree
     t.index ["notificable_type", "notificable_id"], name: "index_notifications_on_notificable_type_and_notificable_id", using: :btree
   end
 
@@ -67,6 +73,8 @@ ActiveRecord::Schema.define(version: 20190523143309) do
     t.datetime "reset_password_email_sent_at"
     t.integer  "access_count_to_reset_password_page",           default: 0
     t.integer  "user_type",                           limit: 1, default: 0, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree

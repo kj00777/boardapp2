@@ -15,5 +15,6 @@ class Board < ApplicationRecord
     scope :followed_boards, -> user {
         joins(:follows).where('follows.user_id = ?', user.id)
     }
+    acts_as_paranoid
     
 end
